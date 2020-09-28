@@ -15,7 +15,7 @@ M667 S1                 ; Select CoreXY mode (2.03RC1 and below)
 M669 K1                 ; Select CoreXY mode (2.03 and up)
 
 ; Network
-M550 PVoron 2.5      ; Set machine name
+M550 PVoron      ; Set machine name
 M552 S1                 ; Enable network
 M586 P0 S1              ; Enable HTTP (for DWC)
 M586 P1 S1              ; Enable FTP (for remote backups)
