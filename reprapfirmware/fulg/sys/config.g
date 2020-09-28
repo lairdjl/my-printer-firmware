@@ -15,7 +15,7 @@ M667 S1                 ; Select CoreXY mode (2.03RC1 and below)
 M669 K1                 ; Select CoreXY mode (2.03 and up)
 
 ; Network
-M550 PVoron V2.015      ; Set machine name
+M550 PVoron 2.5      ; Set machine name
 M552 S1                 ; Enable network
 M586 P0 S1              ; Enable HTTP (for DWC)
 M586 P1 S1              ; Enable FTP (for remote backups)
@@ -42,8 +42,8 @@ M569 P8 S1 ; Z4
 ; Motor mapping and steps per mm
 M584 X0 Y1 Z5:6:7:8 E3:4
 M350 X16 Y16 Z16 E16:16 I1      ; Use 1/16 microstepping with interpolation everywhere
-;M92 X80 Y80 Z400                ; Set XYZ steps per mm (1.8deg motors)
-M92 X160 Y160 Z800              ; Set XYZ steps per mm (0.9deg motors)
+M92 X80 Y80 Z400                ; Set XYZ steps per mm (1.8deg motors)
+;M92 X160 Y160 Z800              ; Set XYZ steps per mm (0.9deg motors)
 M92 E560:560                    ; Set Extruder steps per mm (Mobius 3)
 
 ;M350 Z16 I0 ; disable Z interpolation
@@ -56,7 +56,7 @@ M84 S120                        ; Idle timeout
 ; Endstops
 M574 X2 Y2 Z0 S1                ; Set NC endstops for X and Y, no Z endstop (we have multiple probes instead)
 M208 X-9 Y0 Z0 S1               ; Set axis minima
-M208 X313 Y309 Z275 S0          ; Set axis maxima
+M208 X250 250 Z250 S0          ; Set axis maxima
 
 ; Bed leveling
 M671 X-65:-65:365:365 Y-20:380:380:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
