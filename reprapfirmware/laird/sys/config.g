@@ -33,10 +33,10 @@ M569 P0 S1 ; A
 M569 P1 S1 ; B
 M569 P3 S1 ; Extruder #1
 M569 P4 S0 ; Extruder #2
-M569 P5 S0 ; Z1
-M569 P6 S1 ; Z2
-M569 P7 S0 ; Z3
-M569 P8 S1 ; Z4
+M569 P5 S1 ; Z1
+M569 P6 S0 ; Z2
+M569 P7 S1 ; Z3
+M569 P8 S0 ; Z4
 
 ; Motor mapping and steps per mm
 M584 X0 Y1 Z5:6:7:8 E3:4
@@ -53,9 +53,9 @@ M906 I30                        ; Idle current percentage
 M84 S120                        ; Idle timeout
 
 ; Endstops
-M574 X2 S1 P"xstop"     ; X min active high endstop switch
-M574 Y2 S1 P"ystop"   ; Y min active high endstop switch
-M574 Z2 S1 P"zstop"   ; Z min active high endstop switch
+M574 X1 S2 P"xstop"     ; X max active low endstop switch
+M574 Y1 S2 P"ystop"   ; Y max active low endstop switch
+M574 Z1 S1 P"zstop"   ; Z min active low endstop switch
 
 M208 X-9 Y0 Z0 S1               ; Set axis minima
 M208 X250 250 Z250 S0          ; Set axis maxima
