@@ -11,11 +11,9 @@
 M400
 
 ; TriangleLabs Spring Steel Flexplate
-;M558 P4 C2 I0 F120 H3 T18000 A10 S0.005 B1 R0.2
-;G31 T4 P500 X0 Y0 Z2.18 ; Set parameters for z switch (if positive, greater value = lower nozzle. if negative, more negative = higher nozzle)
 
 ; Energetic Spring Steel Flexplate
-M558 P4 C2 I0 F120 H3 T18000 A10 S0.005 B1 R0.2
+M558 P8 C"zstop" F120 H30 T6000;
 G31 T4 P500 X0 Y0 Z1.87 ; Set parameters for z switch (if positive, greater value = lower nozzle. if negative, more negative = higher nozzle)
 
 G4 P200

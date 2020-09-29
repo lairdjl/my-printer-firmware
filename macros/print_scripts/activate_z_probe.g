@@ -9,8 +9,6 @@
 ; B1:       Turn off heaters while probing
 
 M400
-;M558 P8 I0 T18000 F1200 H5 A5 S0.01 B0 R0.2
-
-M558 P5 C"^zprobe.in"  F120 T6000 ; set Z probe type to modulated and the dive height + speeds
+M558 P8 C"^zprobe.in"  F120 T6000 ; set Z probe type to modulated and the dive height + speeds
 G31 P500 X0 Y25 Z3.45 ; inductive probe offset, not critical, only used for coarse homing
 G4 P200
