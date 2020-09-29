@@ -53,12 +53,12 @@ M906 I30                        ; Idle current percentage
 M84 S120                        ; Idle timeout
 
 ; Endstops
-M574 X1 S2 P"xstop"     ; X max active low endstop switch
-M574 Y1 S2 P"ystop"   ; Y max active low endstop switch
+M574 X2 S1 P"xstop"   ; X max active low endstop switch
+M574 Y2 S1 P"ystop"   ; Y max active low endstop switch
 M574 Z1 S1 P"zstop"   ; Z min active low endstop switch
 
 M208 X-9 Y0 Z0 S1               ; Set axis minima
-M208 X250 250 Z250 S0          ; Set axis maxima
+M208 X250 Y250 Z250 S0          ; Set axis maxima
 
 ; Bed leveling
 M671 X-65:-65:365:365 Y-20:380:380:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
