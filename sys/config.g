@@ -57,13 +57,13 @@ M574 X2 S1 P"xstop"   ; X max active low endstop switch
 M574 Y2 S1 P"ystop"   ; Y max active low endstop switch
 M574 Z0 P"nil"        ; zstop is free
 
-M208 X-9 Y0 Z0 S1               ; Set axis minima
-M208 X250 Y250 Z250 S0          ; Set axis maxima
+M208 X0 Y0 Z0 S1               ; Set axis minima
+M208 X250 Y255 Z230 S0          ; Set axis maxima
 
 ; Bed leveling
 M671 X-65:-65:365:365 Y-20:380:380:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
-M557 X25:275 Y25:275 S25                        ; Define bed mesh grid (inductive probe, positions include the Z offset!)
-;M557 X25:275 Y25:275 S50                        ; Define bed mesh grid (bed piezo)
+M557 X25:225 Y25:225 S25                        ; Define bed mesh grid (inductive probe, positions include the Z offset!)
+;M557 X25:225 Y25:225 S50                        ; Define bed mesh grid (bed piezo)
 
 ; Accelerations and speed
 M98 P"/macros/print_scripts/speed_printing.g"
@@ -88,6 +88,8 @@ M143 H0 S115 ; set the maximum bed temperature to 115C
 ; Hotend #1 heater
 M308 A"Hotend Temp" P"spi.cs1" Y"rtd-max31865" S1
 M950 H1 C"e0heat" Q100 T1;                     ; 1st nozzle is 2-wire PT100, first channel
+M143 H1 295 ; Max hot end temp 295C
+
 ;M307 H1 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; E3D V6 + PT100 PID, 30W heater
 ;M307 H1 A365.9 C236.7 D4.9 S1.00 V24.5 B0       ; E3D Volcano + PT100 PID, 30W heater
 ;M307 H1 A614.3 C180.2 D5.3 S1.00 V24.4 B0       ; Mosquito + PT100 PID, 50W heater
