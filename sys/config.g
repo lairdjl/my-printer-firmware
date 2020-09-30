@@ -74,9 +74,10 @@ M98 P"/macros/print_scripts/speed_printing.g"
 ;P: pin
 ;Y: type
  
-M308 A"Heater Temp" P"bedtemp" Y"thermistor" S1 T100000 B3950
-M950 H1 C"bedheat" Q10 T1; create heater 1 10Hz SSR
-M140 H1
+M308 A"Heater Temp" P"bedtemp" Y"thermistor" S0 T100000 B3950
+M950 H0 C"bedheat" Q10 T0; create heater T0 10Hz SSR
+M140 H0 ; set temp to 0C
+M143 H0 S115 ; set the maximum bed temperature to 115C
 
 
 ; Hotend #1 heater
@@ -85,11 +86,12 @@ M140 H1
 ;M307 H1 A454.1 C235.9 D4.5 S1.00 B0             ; 104GT2 PID, 30W heater
 
 ; Hotend #1 heater
-;M308 S1 P"spi.cs1" Y"thermistor"                      ; 1st nozzle is 2-wire PT100, first channel
+M308 A"Hotend Temp" P"spi.cs1" Y"rtd-max31865" S1
+M950 H1 C"e0heat" Q100 T1;                     ; 1st nozzle is 2-wire PT100, first channel
 ;M307 H1 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; E3D V6 + PT100 PID, 30W heater
 ;M307 H1 A365.9 C236.7 D4.9 S1.00 V24.5 B0       ; E3D Volcano + PT100 PID, 30W heater
 ;M307 H1 A614.3 C180.2 D5.3 S1.00 V24.4 B0       ; Mosquito + PT100 PID, 50W heater
-M143 H1 S300                                    ; Set temperature limit for heater 1 to 300C
+;M143 H1 S300                                    ; Set temperature limit for heater 1 to 300C
 
 ; Hotend #2 heater
 ;M305 P2 R4700 T100000 B4725 C0.0000000706       ; Set thermistor + ADC parameters for heater 2
