@@ -68,27 +68,25 @@ M557 X25:275 Y25:275 S25                        ; Define bed mesh grid (inductiv
 ; Accelerations and speed
 M98 P"/macros/print_scripts/speed_printing.g"
 
-; Bed Heater
-M305 P0 R4700 T100000 B3950                     ; Set thermistor + ADC parameters for heater 0
-M307 H0 A90.0 C700.0 D10.0 S1.00 B1             ; Bang-bang bed
-M143 H0 S110                                    ; Set temperature limit for bed heater to 110C
+; Heated bed
+;Create Heater Thermistor
+;A: Name
+;P: pin
+;Y: type
+ 
+M308 A"Heater Temp" P"bedtemp" Y"thermistor" S1 T100000 B3950
+M950 H1 C"bedheat" Q10 T1; create heater 1 10Hz SSR
+M140 H1
 
-; Bed heater, dual thermistor setup (one for the heater + one for the bed)
-;M305 S"Bed Plate" P0 X0 R4700 T100000 B3950     ; Beta3950 stud thermistor on the edge of the plate
-M307 H0 B1 S1                                   ; 100% PWM, bang-bang mode
-M305 S"Bed Heater" P103 X3 R4700 T100000 B3950  ; Beta3950 thermistor inside the Keenovo heater
-M143 P100 H0 X103 A2 C0 S110                    ; make sure silicone heater stays below 110°C
-M143 P101 H0 X103 A1 C0 S125                    ; make sure silicone heater shuts down at 125°C
-M143 H0 S110                                    ; maximum bed temperature
 
 ; Hotend #1 heater
 ; M307 values are for reference only, RRF stores them in config-override.g via M500 after a PID calibration.
-M305 P1 R4700 T100000 B4725 C0.0000000706       ; Set thermistor + ADC parameters for heater 1
+;M305 P1 R4700 T100000 B4725 C0.0000000706       ; Set thermistor + ADC parameters for heater 1
 ;M307 H1 A454.1 C235.9 D4.5 S1.00 B0             ; 104GT2 PID, 30W heater
 
 ; Hotend #1 heater
-M308 S1 P"spi.cs1" Y"thermistor"                      ; 1st nozzle is 2-wire PT100, first channel
-M307 H1 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; E3D V6 + PT100 PID, 30W heater
+;M308 S1 P"spi.cs1" Y"thermistor"                      ; 1st nozzle is 2-wire PT100, first channel
+;M307 H1 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; E3D V6 + PT100 PID, 30W heater
 ;M307 H1 A365.9 C236.7 D4.9 S1.00 V24.5 B0       ; E3D Volcano + PT100 PID, 30W heater
 ;M307 H1 A614.3 C180.2 D5.3 S1.00 V24.4 B0       ; Mosquito + PT100 PID, 50W heater
 M143 H1 S300                                    ; Set temperature limit for heater 1 to 300C
@@ -99,8 +97,8 @@ M143 H1 S300                                    ; Set temperature limit for heat
 
 ; Hotend #2 heater
 ;M307 H2 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; PT100 PID, 30W heater
-M305 P2 X201                                    ; PT100, second channel
-M143 H2 S300                                    ; Set temperature limit for heater 2 to 300C
+;M305 P2 X201                                    ; PT100, second channel
+;M143 H2 S300                                    ; Set temperature limit for heater 2 to 300C
 
 ; Chamber temperature sensor via temperature daughterboard pins on Duex
 M305 S"Ambient" P104 X405 T21                   ; Set DHT21 for chamber temp
