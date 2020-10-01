@@ -58,10 +58,10 @@ M574 Y2 S1 P"ystop"   ; Y max active low endstop switch
 M574 Z0 P"nil"        ; zstop is free
 
 M208 X0 Y0 Z0 S1               ; Set axis minima
-M208 X250 Y255 Z230 S0          ; Set axis maxima
+M208 X250 Y250 Z230 S0          ; Set axis maxima
 
 ; Bed leveling
-M671 X-65:-65:365:365 Y-20:380:380:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
+M671 X-65:-65:265:265 Y-20:280:280:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
 M557 X25:225 Y25:225 S25                        ; Define bed mesh grid (inductive probe, positions include the Z offset!)
 ;M557 X25:225 Y25:225 S50                        ; Define bed mesh grid (bed piezo)
 

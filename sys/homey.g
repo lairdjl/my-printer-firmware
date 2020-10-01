@@ -25,8 +25,10 @@ G90
 ; Move slowly to X axis endstop once more (second pass)
 G1 Y600 F360 S1
 
+
 ; Restore AB currents
 M98 P"/macros/print_scripts/xy_current_high.g"
 
 ; Homing done, enforce limits
 M564 S1 H1
+
