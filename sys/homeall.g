@@ -16,22 +16,22 @@ M98 P"/macros/print_scripts/z_current_high.g"
 M98 P"/macros/print_scripts/xy_current_low.g"
 
 ; Coarse home X or Y
-G1 X600 Y600 F2400 S1
+G1 X600 Y600 F2400 H1
 
 ; Coarse home X
-G1 X600 S1
+G1 X600 H1
 
 ; Coarse home Y
-G1 Y600 S1
+G1 Y600 H1
 
 ; Move away from the endstops
 G1 X-5 Y-5 F9000
 
 ; Fine home X
-G1 X600 F360 S1
+G1 X600 F360 H1
 
 ; Fine home Y
-G1 Y600 S1
+G1 Y600 H1
 
 ; Restore high AB currents
 M98 P"/macros/print_scripts/xy_current_high.g"

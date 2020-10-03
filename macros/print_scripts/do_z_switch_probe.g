@@ -1,4 +1,5 @@
 ; do a single probe on the Z switch, finalizing the Z height
+
 M98 P"/macros/print_scripts/z_current_low.g"
 M98 P"/macros/print_scripts/activate_z_switch.g"
 M98 P"/macros/print_scripts/goto_z_switch.g"

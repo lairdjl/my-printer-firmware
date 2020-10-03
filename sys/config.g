@@ -58,17 +58,16 @@ M574 Y2 S1 P"ystop"   ; Y max active low endstop switch
 M574 Z0 P"nil"        ; zstop is free
 
 M208 X0 Y0 Z0 S1               ; Set axis minima
-M208 X250 Y250 Z230 S0          ; Set axis maxima
+M208 X250 Y255 Z230 S0          ; Set axis maxima
 
 ; Bed leveling
 M671 X-65:-65:265:265 Y-20:280:280:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
-M557 X25:225 Y25:225 S25                        ; Define bed mesh grid (inductive probe, positions include the Z offset!)
-;M557 X25:225 Y25:225 S50                        ; Define bed mesh grid (bed piezo)
+M557 X50:200 Y50:200 S25                        ; Define bed mesh grid (inductive probe, positions include the Z offset!)
 
 ; Accelerations and speed
 M98 P"/macros/print_scripts/speed_printing.g"
 
-; Heated bed
+; Heated bed #0
 ;Create Heater Thermistor
 ;A: Name
 ;P: pin
@@ -81,7 +80,7 @@ M143 H0 S115 ; set the maximum bed temperature to 115C
 
 
 ; Hotend #1 heater
-; M307 values are for reference only, RRF stores them in config-override.g via M500 after a PID calibration.
+;M307 values are for reference only, RRF stores them in config-override.g via M500 after a PID calibration.
 ;M305 P1 R4700 T100000 B4725 C0.0000000706       ; Set thermistor + ADC parameters for heater 1
 ;M307 H1 A454.1 C235.9 D4.5 S1.00 B0             ; 104GT2 PID, 30W heater
 
@@ -89,20 +88,13 @@ M143 H0 S115 ; set the maximum bed temperature to 115C
 M308 A"Hotend Temp" P"spi.cs1" Y"rtd-max31865" S1
 M950 H1 C"e0heat" Q100 T1;                     ; 1st nozzle is 2-wire PT100, first channel
 M143 H1 295 ; Max hot end temp 295C
+M950 F0 C"fan0" Q100                            ; fan for hot end
 
 ;M307 H1 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; E3D V6 + PT100 PID, 30W heater
 ;M307 H1 A365.9 C236.7 D4.9 S1.00 V24.5 B0       ; E3D Volcano + PT100 PID, 30W heater
 ;M307 H1 A614.3 C180.2 D5.3 S1.00 V24.4 B0       ; Mosquito + PT100 PID, 50W heater
 ;M143 H1 S300                                    ; Set temperature limit for heater 1 to 300C
 
-; Hotend #2 heater
-;M305 P2 R4700 T100000 B4725 C0.0000000706       ; Set thermistor + ADC parameters for heater 2
-;M307 H2 A454.1 C235.9 D4.5 S1.00 B0             ; 104GT2 PID, 30W heater
-
-; Hotend #2 heater
-;M307 H2 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; PT100 PID, 30W heater
-;M305 P2 X201                                    ; PT100, second channel
-;M143 H2 S300                                    ; Set temperature limit for heater 2 to 300C
 
 ; Chamber temperature sensor via temperature daughterboard pins on Duex
 M305 S"Ambient" P104 X405 T21                   ; Set DHT21 for chamber temp
@@ -120,19 +112,18 @@ M307 H7 A-1 C-1 D-1
 M98 P"/macros/print_scripts/activate_z_probe.g"
 
 ; Fans
+
 ;M106 P3 S1 I0 H1 T50              ; E3D V6 Hotend fan, turns on if temperature sensor 1 reaches 50 degrees
-M106 P3 S0.6 I0 H1 T50              ; Mosquito Hotend fan @ 60%, turns on if temperature sensor 1 reaches 50 degrees
-M106 P4 S0 I0 H-1                   ; Part cooling fan, no thermostatic control
+;M106 P3 S0.6 I0 H1 T50              ; Mosquito Hotend fan @ 60%, turns on if temperature sensor 1 reaches 50 degrees
+;M106 P4 S0 I0 H-1                   ; Part cooling fan, no thermostatic control
 ;M106 P5 T45:65 F50 H100:101:102     ; Electronics bay fan, turn on gradually if MCU is over 45C or any TMC driver is over temp
-M106 P8 S1 H0 T50                   ; Chamber filter fan, turn on when bed is hotter than 50C
+;M106 P8 S1 H0 T50                   ; Chamber filter fan, turn on when bed is hotter than 50C
 
 ; Tools
-M563 P0 D0 H1 F4                    ; Define tool 0, use fan #4 for M106
+M563 P0 D0 H1 F1                    ; Define tool 0, use fan #1 for M106
 G10 P0 X0 Y0 Z0                     ; Set tool 0 axis offsets
-G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
+;G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
 
-; Pressure advance
-M572 D0 S0.2
 
 M501                                ; load config-override.g
 T0                                  ; select tool 0
