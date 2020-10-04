@@ -40,12 +40,12 @@ M569 P8 S0 ; Z4
 
 ; Motor mapping and steps per mm
 M584 X0 Y1 Z5:6:7:8 E3:4
-M350 X16 Y16 Z16 E16:16 I1      ; Use 1/16 microstepping with interpolation everywhere
+M350 X16 Y16 Z16 I1      ; Use 1/16 microstepping with interpolation everywhere
+M350 E16:16 I1;         ;   no microstepping on the extruder
 M92 X80 Y80 Z400                ; Set XYZ steps per mm (1.8deg motors)
 ;M92 X160 Y160 Z800              ; Set XYZ steps per mm (0.9deg motors)
-;M92 E560:560                    ; Set Extruder steps per mm (Mobius 3)
-M92 E416.6:416.6
-;M350 Z16 I0 ; disable Z interpolation
+M92 E417:417
+M350 Z16 I0 ; disable Z interpolation
 
 ; Drive currents
 M906 X1200 Y1200 Z1200 E1000    ; XYZ and E current
