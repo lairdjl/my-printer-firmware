@@ -43,8 +43,8 @@ M584 X0 Y1 Z5:6:7:8 E3:4
 M350 X16 Y16 Z16 E16:16 I1      ; Use 1/16 microstepping with interpolation everywhere
 M92 X80 Y80 Z400                ; Set XYZ steps per mm (1.8deg motors)
 ;M92 X160 Y160 Z800              ; Set XYZ steps per mm (0.9deg motors)
-M92 E560:560                    ; Set Extruder steps per mm (Mobius 3)
-
+;M92 E560:560                    ; Set Extruder steps per mm (Mobius 3)
+M92 E416.6:416.6
 ;M350 Z16 I0 ; disable Z interpolation
 
 ; Drive currents
@@ -80,17 +80,21 @@ M143 H0 S115 ; set the maximum bed temperature to 115C
 
 
 ; Hotend #1 heater
-;M307 values are for reference only, RRF stores them in config-override.g via M500 after a PID calibration.
+; M307 values are for reference only, RRF stores them in config-override.g via M500 after a PID calibration.
 ;M305 P1 R4700 T100000 B4725 C0.0000000706       ; Set thermistor + ADC parameters for heater 1
 ;M307 H1 A454.1 C235.9 D4.5 S1.00 B0             ; 104GT2 PID, 30W heater
 
 ; Hotend #1 heater
-M308 A"Hotend Temp" P"spi.cs1" Y"rtd-max31865" S1
+;M308 A"Hotend Temp" P"spi.cs1" Y"rtd-max31865" S1
+M308 S1 P"e0temp" Y"thermistor" T100000 B4092 ; sensor 1
 M950 H1 C"e0heat" Q100 T1;                     ; 1st nozzle is 2-wire PT100, first channel
 M143 H1 295 ; Max hot end temp 295C
 M950 F0 C"fan0" Q100                            ; fan for hot end
+M106 P0 T45 H1
 
-;M307 H1 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; E3D V6 + PT100 PID, 30W heater
+M950 F1 C"fan1" Q100                            ; fan for part cooling
+
+M307 H1 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; E3D V6 + PT100 PID, 30W heater
 ;M307 H1 A365.9 C236.7 D4.9 S1.00 V24.5 B0       ; E3D Volcano + PT100 PID, 30W heater
 ;M307 H1 A614.3 C180.2 D5.3 S1.00 V24.4 B0       ; Mosquito + PT100 PID, 50W heater
 ;M143 H1 S300                                    ; Set temperature limit for heater 1 to 300C
@@ -122,7 +126,7 @@ M98 P"/macros/print_scripts/activate_z_probe.g"
 ; Tools
 M563 P0 D0 H1 F1                    ; Define tool 0, use fan #1 for M106
 G10 P0 X0 Y0 Z0                     ; Set tool 0 axis offsets
-;G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
+G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
 
 
 M501                                ; load config-override.g
