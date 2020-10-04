@@ -44,8 +44,8 @@ M350 X16 Y16 Z16 I1      ; Use 1/16 microstepping with interpolation everywhere
 M350 E16:16 I1;         ;   no microstepping on the extruder
 M92 X80 Y80 Z400                ; Set XYZ steps per mm (1.8deg motors)
 ;M92 X160 Y160 Z800              ; Set XYZ steps per mm (0.9deg motors)
-M92 E417:417
-M350 Z16 I0 ; disable Z interpolation
+M92 E404:404                    ;417 was original - after tuning 405 was slightly over 100mm. Therefore, 404
+;M350 Z16 I0 ; disable Z interpolation
 
 ; Drive currents
 M906 X1200 Y1200 Z1200 E1000    ; XYZ and E current
@@ -128,6 +128,6 @@ M563 P0 D0 H1 F1                    ; Define tool 0, use fan #1 for M106
 G10 P0 X0 Y0 Z0                     ; Set tool 0 axis offsets
 G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
 
-
+M572 D0:1 S0.02:0.02                  ; Enable pressure advance 
 M501                                ; load config-override.g
 T0                                  ; select tool 0
