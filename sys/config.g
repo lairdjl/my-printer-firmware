@@ -88,17 +88,10 @@ M143 H0 S115 ; set the maximum bed temperature to 115C
 ;M308 A"Hotend Temp" P"spi.cs1" Y"rtd-max31865" S1
 M308 S1 P"e0temp" Y"thermistor" T100000 B4092 ; sensor 1
 M950 H1 C"e0heat" Q100 T1;                     ; 1st nozzle is 2-wire PT100, first channel
-M143 H1 295 ; Max hot end temp 295C
+M143 H1 295                                     ; Max hot end temp 295C
 M950 F0 C"fan0" Q100                            ; fan for hot end
-M106 P0 T45 H1
-
+M106 P0 T45 H1                                  ; Set fan 0 to on when hot end goes > 45C
 M950 F1 C"fan1" Q100                            ; fan for part cooling
-
-M307 H1 A568.8 C203.2 D4.0 S1.00 V24.5 B0       ; E3D V6 + PT100 PID, 30W heater
-;M307 H1 A365.9 C236.7 D4.9 S1.00 V24.5 B0       ; E3D Volcano + PT100 PID, 30W heater
-;M307 H1 A614.3 C180.2 D5.3 S1.00 V24.4 B0       ; Mosquito + PT100 PID, 50W heater
-;M143 H1 S300                                    ; Set temperature limit for heater 1 to 300C
-
 
 ; Chamber temperature sensor via temperature daughterboard pins on Duex
 M305 S"Ambient" P104 X405 T21                   ; Set DHT21 for chamber temp
