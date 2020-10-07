@@ -11,7 +11,7 @@ G32
 G28 Z
 
 ; Probe a new bed mesh!
-G29
+G29 S0
 
 ; Restore Z=0 to the proper reference
 M98 P"/macros/print_scripts/do_z_switch_probe.g"
