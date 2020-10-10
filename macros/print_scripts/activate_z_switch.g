@@ -13,6 +13,6 @@ M400
 
 ; Energetic Spring Steel Flexplate
 M558 P8 C"zstop" F120 H5 A5 S0.01 B1 18000;
-G31 T4 P500 X0 Y0 Z-.7 ; Set parameters for z switch (if positive, greater value = lower nozzle. if negative, more negative = higher nozzle)
+G31 T4 P500 X0 Y0 Z-.4 ; Set parameters for z switch (if positive, greater value = lower nozzle. if negative, more negative = higher nozzle)
 
 G4 P200
