@@ -93,6 +93,12 @@ M950 F0 C"fan0" Q100                            ; fan for hot end
 M106 P0 T45 H1                                  ; Set fan 0 to on when hot end goes > 45C
 M950 F1 C"fan1" Q100                            ; fan for part cooling
 
+
+
+;Side Fans
+M950 F2 C"fan5" Q100;
+M950 F3 C"fan6" Q100;
+
 ; Chamber temperature sensor via temperature daughterboard pins on Duex
 M305 S"Ambient" P104 X405 T21                   ; Set DHT21 for chamber temp
 M305 S"Humidity [%]" P105 X455 T21              ; Set DHT21 for chamber humidity
@@ -121,6 +127,6 @@ M563 P0 D0 H1 F1                    ; Define tool 0, use fan #1 for M106
 G10 P0 X0 Y0 Z0                     ; Set tool 0 axis offsets
 G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
 
-M572 D0:1 S0.02:0.02                  ; Enable pressure advance 
+M572 D0:1 S0.05:0.05                  ; Enable pressure advance (used to be 0.02)
 M501                                ; load config-override.g
 T0                                  ; select tool 0
