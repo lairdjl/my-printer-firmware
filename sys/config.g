@@ -83,19 +83,17 @@ M143 H0 S115                                    ; set the maximum bed temperatur
 M308 S1 P"e0temp" Y"thermistor" T100000 B4092   ; define thermistor
 M950 H1 C"e0heat" Q100 T1;                      ; define heater, connect to thermistor
 M143 H1 295                                     ; Max hot end temp 295C
-M950 F0 C"fan0" Q100                            ; fan for hot end
-M106 P0 T45 H1 C"Toolhead"                      ; Set fan 0 to on when hot end goes > 45C
+M950 F1 C"fan1" Q100                            ; fan for hot end
+M106 P1 T45 H1                                  ; Set fan 1 to on when hot end goes > 45C
 
-M950 F1 C"fan1" Q100                            
-M106 P1 C"Part Cooling" H-1                     ; Part cooling fan, no thermostatic control
+M950 F0 C"fan0" Q100                          
 
 
 ;Side Fans
-M950 F5 C"fan5" Q100;
-M106 P5 T45:65 F50 H100:101:102     ; Electronics bay fan, turn on gradually if MCU is over 45C or any TMC driver is over temp
-
-M950 F6 C"fan6" Q100;
-M106 P6 T45:65 F50 H100:101:102     ; Electronics bay fan, turn on gradually if MCU is over 45C or any TMC driver is over temp
+M950 F5 C"duex.fan5" Q100;
+M950 F6 C"duex.fan6" Q100;
+M106 C"Electronics Bay"P5 T45:65 F50 H100:101:102     ; Electronics bay fan, turn on gradually if MCU is over 45C or any TMC driver is over temp
+M106 C"Electronics Bay"P6 T45:65 F50 H100:101:102     ; Electronics bay fan, turn on gradually if MCU is over 45C or any TMC driver is over temp
 
 
 ; Chamber temperature sensor via temperature daughterboard pins on Duex
@@ -122,7 +120,7 @@ M98 P"/macros/print_scripts/activate_z_probe.g"
 ;M106 P8 S1 H0 T50                   ; Chamber filter fan, turn on when bed is hotter than 50C
 
 ; Tools
-M563 P0 D0 H1 F0                    ; Define tool 0
+M563 P0 D0 H1 F1                    ; Define tool 0
 G10 P0 X0 Y0 Z0                     ; Set tool 0 axis offsets
 G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
 
@@ -130,7 +128,7 @@ G10 P0 R0 S0                        ; Set initial tool 0 active and standby temp
 ; Originally was 0.02 - felt too low for Voron afterburner
 ; Moved up to 0.05 - bit of a clicking - might be too much.
 ; Middle of the road = 0.035. More tuning is necessary
-M572 D0:1 S0.035:0.035  
+M572 D0:1 S0.095:0.095  
 
 
 M501                                ; load config-override.g
