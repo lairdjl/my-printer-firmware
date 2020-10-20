@@ -127,6 +127,12 @@ M563 P0 D0 H1 F1                    ; Define tool 0, use fan #1 for M106
 G10 P0 X0 Y0 Z0                     ; Set tool 0 axis offsets
 G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
 
-M572 D0:1 S0.05:0.05                  ; Enable pressure advance (used to be 0.02)
+; Enable pressure advance
+; Originally was 0.02 - felt too low for Voron afterburner
+; Moved up to 0.05 - bit of a clicking - might be too much.
+; Middle of the road = 0.035. More tuning is necessary
+M572 D0:1 S0.035:0.035  
+
+
 M501                                ; load config-override.g
 T0                                  ; select tool 0
