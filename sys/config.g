@@ -61,7 +61,9 @@ M208 X0 Y0 Z0 S1               ; Set axis minima
 M208 X250 Y255 Z230 S0          ; Set axis maxima
 
 ; Bed leveling
-M671 X-65:-65:265:265 Y-20:280:280:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
+;M671 X-65:-65:265:265 Y-20:280:280:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
+M671 X-65:-65:320:320 Y-20:350:350:-20 S20      ; Define Z belts locations (Front_Left, Back_Left, Back_Right, Front_Right)
+
 M557 X50:200 Y50:200 S25                        ; Define bed mesh grid (inductive probe, positions include the Z offset!)
 
 ; Accelerations and speed
