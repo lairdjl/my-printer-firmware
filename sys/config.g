@@ -130,7 +130,7 @@ G10 P0 R0 S0                        ; Set initial tool 0 active and standby temp
 ; Originally was 0.02 - felt too low for Voron afterburner
 ; Moved up to 0.05 - bit of a clicking - might be too much.
 ; Middle of the road = 0.035. More tuning is necessary
-M572 D0:1 S0.095:0.095  
+M572 D0 S0.085
 
 
 M501                                ; load config-override.g
