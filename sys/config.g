@@ -89,7 +89,7 @@ M950 F1 C"fan1" Q100                            ; fan for hot end
 M106 P1 T45 H1                                  ; Set fan 1 to on when hot end goes > 45C
 
 M950 F0 C"fan0" Q100                          
-
+M106 P0 C"Part Cooling" 
 
 ;Side Fans
 M950 F5 C"duex.fan5" Q100;
@@ -122,15 +122,13 @@ M98 P"/macros/print_scripts/activate_z_probe.g"
 ;M106 P8 S1 H0 T50                   ; Chamber filter fan, turn on when bed is hotter than 50C
 
 ; Tools
-M563 P0 D0 H1 F1                    ; Define tool 0
+M563 P0 D0 H1 F0                    ; Define tool 0
 G10 P0 X0 Y0 Z0                     ; Set tool 0 axis offsets
 G10 P0 R0 S0                        ; Set initial tool 0 active and standby temperatures to 0C
 
 ; Enable pressure advance
-; Originally was 0.02 - felt too low for Voron afterburner
-; Moved up to 0.05 - bit of a clicking - might be too much.
-; Middle of the road = 0.035. More tuning is necessary
-M572 D0 S0.085
+; 0.085 was damn near perfect. Slight blobbing. Upping to 0.087.
+M572 D0 S0.087
 
 
 M501                                ; load config-override.g
